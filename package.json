@@ -7,5 +7,11 @@
   "license": "MIT",
   "author": "SHUN/しゅん <shun.shobon@gmail.com> (https://github.com/shun-shobon)",
   "repository": "https://github.com/shun-shobon/preact-template.git",
+  "dependencies": {
+    "tslib": "^2.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  },
   "private": true
 }
