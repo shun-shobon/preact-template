@@ -1,0 +1,11 @@
+{
+  "name": "preact-template",
+  "version": "0.0.0",
+  "description": "preact project template.",
+  "homepage": "https://github.com/shun-shobon/preact-template#readme",
+  "bugs": "https://github.com/shun-shobon/preact-template/issues",
+  "license": "MIT",
+  "author": "SHUN/しゅん <shun.shobon@gmail.com> (https://github.com/shun-shobon)",
+  "repository": "https://github.com/shun-shobon/preact-template.git",
+  "private": true
+}
