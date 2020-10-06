@@ -2,6 +2,9 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "sourceMap": true,
     "removeComments": true,
     "importHelpers": true,

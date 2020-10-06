@@ -11,6 +11,7 @@
     "build": "cross-env TS_NODE_PROJECT='tsconfig.webpack.json' webpack"
   },
   "dependencies": {
+    "preact": "^10.5.4",
     "tslib": "^2.0.2"
   },
   "devDependencies": {

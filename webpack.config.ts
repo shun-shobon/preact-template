@@ -9,7 +9,7 @@ const isDevelopment = !isProduction;
 const config: webpack.Configuration = {
   mode: isProduction ? "production" : "development",
   entry: {
-    main: path.join(__dirname, "src", "index.ts"),
+    main: path.join(__dirname, "src", "index.tsx"),
   },
   output: {
     publicPath: baseUrl,
@@ -17,12 +17,12 @@ const config: webpack.Configuration = {
     filename: "scripts/[name].[contenthash:8].js",
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   module: {
     rules: [
       {
-        test: /.ts$/,
+        test: /.tsx$/,
         exclude: /node_modules/,
         use: [
           {
