@@ -1,4 +1,5 @@
 import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import sass from "sass";
 import fibers from "fibers";
 import path from "path";
@@ -93,6 +94,14 @@ const config: webpack.Configuration = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: "body",
+      minify: isProduction,
+      template: path.join(__dirname, "src", "index.html"),
+      scriptLoading: "defer",
+    }),
+  ],
   devtool: isDevelopment ? "inline-source-map" : false,
 };
 
