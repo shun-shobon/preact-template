@@ -112,6 +112,9 @@ const config: webpack.Configuration = {
     }),
   ],
   devtool: isDevelopment ? "inline-source-map" : false,
+  devServer: {
+    historyApiFallback: true,
+  },
 };
 
 export default config;

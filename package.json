@@ -8,7 +8,8 @@
   "author": "SHUN/しゅん <shun.shobon@gmail.com> (https://github.com/shun-shobon)",
   "repository": "https://github.com/shun-shobon/preact-template.git",
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT='tsconfig.webpack.json' webpack"
+    "build": "cross-env TS_NODE_PROJECT='tsconfig.webpack.json' webpack",
+    "dev": "cross-env TS_NODE_PROJECT='tsconfig.webpack.json' webpack-dev-server"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -25,6 +26,7 @@
     "@types/node": "^14.11.5",
     "@types/sass": "^1.16.0",
     "@types/webpack": "^4.41.22",
+    "@types/webpack-dev-server": "^3.11.0",
     "autoprefixer": "^10.0.1",
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.2.0",
@@ -46,7 +48,8 @@
     "typescript": "^4.0.3",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "private": true
 }
