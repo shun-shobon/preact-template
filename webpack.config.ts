@@ -1,4 +1,6 @@
 import webpack from "webpack";
+import sass from "sass";
+import fibers from "fibers";
 import path from "path";
 
 const baseUrl = process.env.BASE_URL ?? "/";
@@ -32,6 +34,34 @@ const config: webpack.Configuration = {
             loader: "ts-loader",
             options: {
               configFile: path.join(__dirname, "tsconfig.json"),
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(?:c|sa|sc)ss$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                auto: /\.module\.\w$/,
+                localIdentName: isProduction ? "[hash:base64]" : "[path][name]__[local]",
+                exportLocalsConvention: "dashesOnly",
+              },
+              sourceMap: isDevelopment,
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              implementation: sass,
+              sassOptions: {
+                fiber: fibers,
+              },
             },
           },
         ],
