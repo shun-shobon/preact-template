@@ -69,6 +69,24 @@ const config: webpack.Configuration = {
           },
         ],
       },
+      {
+        test: /\.(?:png|jpe?g|gif|webp)$/,
+        loader: "url-loader",
+        options: {
+          limit: 8192,
+          fallback: "file-loader",
+          name: "images/[name].[contenthash:8].[ext]",
+        },
+      },
+      {
+        test: /\.(?:woff|woff2|ttf|otf)$/,
+        loader: "url-loader",
+        options: {
+          limit: 8192,
+          fallback: "file-loader",
+          name: "assets/[name].[contenthash:8].[ext]",
+        },
+      },
     ],
   },
   devtool: isDevelopment ? "inline-source-map" : false,
