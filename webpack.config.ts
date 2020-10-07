@@ -1,6 +1,7 @@
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import sass from "sass";
 import fibers from "fibers";
 import path from "path";
@@ -96,6 +97,7 @@ const config: webpack.Configuration = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       inject: "body",
       minify: isProduction,
