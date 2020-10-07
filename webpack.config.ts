@@ -70,6 +70,10 @@ const config: webpack.Configuration = {
         ],
       },
       {
+        test: /\.svg$/,
+        loader: "svg-inline-loader",
+      },
+      {
         test: /\.(?:png|jpe?g|gif|webp)$/,
         loader: "url-loader",
         options: {
