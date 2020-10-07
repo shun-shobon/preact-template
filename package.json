@@ -11,10 +11,14 @@
     "build": "cross-env TS_NODE_PROJECT='tsconfig.webpack.json' webpack"
   },
   "dependencies": {
+    "core-js": "^3.6.5",
     "preact": "^10.5.4",
+    "regenerator-runtime": "^0.13.7",
     "tslib": "^2.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
     "@types/node": "^14.11.5",
     "@types/webpack": "^4.41.22",
     "cross-env": "^7.0.2",
