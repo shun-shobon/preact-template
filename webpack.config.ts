@@ -1,5 +1,6 @@
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 import sass from "sass";
 import fibers from "fibers";
 import path from "path";
@@ -100,6 +101,14 @@ const config: webpack.Configuration = {
       minify: isProduction,
       template: path.join(__dirname, "src", "index.html"),
       scriptLoading: "defer",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.join(__dirname, "public"),
+          noErrorOnMissing: true,
+        },
+      ],
     }),
   ],
   devtool: isDevelopment ? "inline-source-map" : false,
