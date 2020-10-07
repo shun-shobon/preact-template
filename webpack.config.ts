@@ -1,17 +1,26 @@
-import webpack from "webpack";
+import { Configuration, DefinePlugin } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import sass from "sass";
 import fibers from "fibers";
+import dotenv from "dotenv";
 import path from "path";
 
+dotenv.config();
+
 const baseUrl = process.env.BASE_URL ?? "/";
+
+const envArray = Object.entries(process.env).flatMap(([key, value]) => {
+  if (key !== "NODE_ENV" && !key.startsWith("PREACT_APP_")) return [];
+  return [[`process.env.${key}`, JSON.stringify(value)]];
+});
+const envs = Object.fromEntries(envArray) as NodeJS.Dict<string>;
 
 const isProduction = process.env.NODE_ENV === "production";
 const isDevelopment = !isProduction;
 
-const config: webpack.Configuration = {
+const config: Configuration = {
   mode: isProduction ? "production" : "development",
   entry: {
     main: path.join(__dirname, "src", "index.tsx"),
@@ -98,6 +107,7 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new DefinePlugin(envs),
     new HtmlWebpackPlugin({
       inject: "body",
       minify: isProduction,
