@@ -26,6 +26,9 @@ const config: webpack.Configuration = {
         exclude: /node_modules/,
         use: [
           {
+            loader: "babel-loader",
+          },
+          {
             loader: "ts-loader",
             options: {
               configFile: path.join(__dirname, "tsconfig.json"),

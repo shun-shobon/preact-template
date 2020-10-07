@@ -8,6 +8,7 @@ devDependencies:
   '@babel/preset-env': 7.11.5_@babel+core@7.11.6
   '@types/node': 14.11.5
   '@types/webpack': 4.41.22
+  babel-loader: 8.1.0_d2a654c8b7ff226093b38eb7b56a78a8
   cross-env: 7.0.2
   ts-loader: 8.0.4_typescript@4.0.3
   ts-node: 9.0.0_typescript@4.0.3
@@ -947,6 +948,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-/+CRPXpBDpo2RK9C68N3b2cOvO0Cf5B9aPijHsoDQTHivnGSObdOF2BRQOYjojWTDy6nQvMjmqRXIxH55VjxxA==
+  /@types/json-schema/7.0.6:
+    dev: true
+    resolution:
+      integrity: sha512-3c+yGKvVP5Y9TYBEibGNR+kLtijnj7mYrXRg+WpFb2X9xm04g/DXYkfg4hmzJQosc9snFNUPkbYIhu+KAm6jJw==
   /@types/json5/0.0.29:
     dev: true
     resolution:
@@ -1253,6 +1258,23 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+  /babel-loader/8.1.0_d2a654c8b7ff226093b38eb7b56a78a8:
+    dependencies:
+      '@babel/core': 7.11.6
+      find-cache-dir: 2.1.0
+      loader-utils: 1.4.0
+      mkdirp: 0.5.5
+      pify: 4.0.1
+      schema-utils: 2.7.1
+      webpack: 4.44.2_93ca2875a658e9d1552850624e6b91c7
+    dev: true
+    engines:
+      node: '>= 6.9'
+    peerDependencies:
+      '@babel/core': ^7.0.0
+      webpack: '>=2'
+    resolution:
+      integrity: sha512-7q7nC1tYOrqvUrN3LQK4GwSk/TQorZSOlO9C+RZDZpODgyN4ZlCqE5q9cDsyWOliN+aU9B4JX01xK9eJXowJLw==
   /babel-plugin-dynamic-import-node/2.3.3:
     dependencies:
       object.assign: 4.1.1
@@ -3514,6 +3536,16 @@ packages:
       node: '>= 4'
     resolution:
       integrity: sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==
+  /schema-utils/2.7.1:
+    dependencies:
+      '@types/json-schema': 7.0.6
+      ajv: 6.12.5
+      ajv-keywords: 3.5.2_ajv@6.12.5
+    dev: true
+    engines:
+      node: '>= 8.9.0'
+    resolution:
+      integrity: sha512-SHiNtMOUGWBQJwzISiVYKu82GiV4QYGePp3odlY1tuKO7gPtphAT5R/py0fA6xtbgLL/RvtJZnU9b8s0F1q0Xg==
   /semver/5.7.1:
     dev: true
     hasBin: true
@@ -4233,6 +4265,7 @@ specifiers:
   '@babel/preset-env': ^7.11.5
   '@types/node': ^14.11.5
   '@types/webpack': ^4.41.22
+  babel-loader: ^8.1.0
   core-js: ^3.6.5
   cross-env: ^7.0.2
   preact: ^10.5.4
