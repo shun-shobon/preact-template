@@ -10,6 +10,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
+    "lint": "run-p eslint stylelint",
     "eslint": "eslint --ignore-path .gitignore 'src/**/*.{tsx,ts}'",
     "eslint:fix": "eslint --ignore-path .gitignore 'src/**/*.{tsx,ts}' --fix",
     "stylelint": "stylelint --ignore-path .gitignore 'src/**/*.{scss,css}'",
@@ -59,6 +60,7 @@
     "html-webpack-plugin": "^4.5.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.1.1",
     "postcss-loader": "^4.0.3",
     "prettier": "^2.1.2",
