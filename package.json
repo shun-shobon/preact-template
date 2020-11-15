@@ -10,7 +10,7 @@
   "scripts": {
     "build": "webpack",
     "clean": "rimraf dist",
-    "dev": "webpack-dev-server",
+    "dev": "webpack serve",
     "lint": "run-p eslint stylelint",
     "eslint": "eslint --ignore-path .gitignore 'src/**/*.{tsx,ts}'",
     "eslint:fix": "eslint --ignore-path .gitignore 'src/**/*.{tsx,ts}' --fix",
