@@ -1,34 +1,30 @@
-import { Configuration, DefinePlugin } from "webpack";
+import { EnvironmentPlugin, WebpackOptionsNormalized, WebpackPluginInstance } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import sass from "sass";
 import fibers from "fibers";
-import dotenv from "dotenv";
-import path from "path";
+import * as dotenv from "dotenv";
+import * as path from "path";
 
 dotenv.config();
-
-const baseUrl = process.env.BASE_URL ?? "/";
-
-const envArray = Object.entries(process.env).flatMap(([key, value]) => {
-  if (key !== "NODE_ENV" && !key.startsWith("PREACT_APP_")) return [];
-  return [[`process.env.${key}`, JSON.stringify(value)]];
-});
-const envs = Object.fromEntries(envArray) as NodeJS.Dict<string>;
 
 const isProduction = process.env.NODE_ENV === "production";
 const isDevelopment = !isProduction;
 
-const config: Configuration = {
+const baseURL = process.env.BASE_URL ?? "/";
+
+const config: WebpackOptionsNormalized = {
   mode: isProduction ? "production" : "development",
   entry: {
-    main: path.join(__dirname, "src", "index.tsx"),
+    index: {
+      import: [path.join(__dirname, "src", "index.tsx")],
+    },
   },
   output: {
-    publicPath: baseUrl,
     path: path.join(__dirname, "dist"),
-    filename: "scripts/[name].[contenthash:8].js",
+    publicPath: baseURL,
+    filename: "assets/scripts/[name].[contenthash:8].js",
+    chunkFilename: "assets/scripts/chunk.[contenthash:8].js",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
@@ -36,7 +32,7 @@ const config: Configuration = {
   module: {
     rules: [
       {
-        test: /\.tsx$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -59,20 +55,25 @@ const config: Configuration = {
           {
             loader: "css-loader",
             options: {
+              sourceMap: isDevelopment,
+              importLoaders: 2,
               modules: {
-                auto: /\.module\.\w$/,
-                localIdentName: isProduction ? "[hash:base64]" : "[path][name]__[local]",
+                auto: true,
+                localIdentName: isProduction ? "[hash:base64:8]" : "[path][name]__[local]",
                 exportLocalsConvention: "dashesOnly",
               },
-              importLoaders: 2,
             },
           },
           {
             loader: "postcss-loader",
+            options: {
+              sourceMap: isDevelopment,
+            },
           },
           {
             loader: "sass-loader",
             options: {
+              sourceMap: isDevelopment,
               implementation: sass,
               sassOptions: {
                 fiber: fibers,
@@ -82,51 +83,56 @@ const config: Configuration = {
         ],
       },
       {
-        test: /\.svg$/,
-        loader: "svg-inline-loader",
-      },
-      {
-        test: /\.(?:png|jpe?g|gif|webp)$/,
-        loader: "url-loader",
-        options: {
-          limit: 8192,
-          fallback: "file-loader",
-          name: "images/[name].[contenthash:8].[ext]",
+        test: /\.(?:png|jpe?g|svg|gif|webp)$/,
+        type: "asset",
+        generator: {
+          filename: "assets/images/[name].[contenthash:8].[ext]",
         },
-      },
-      {
-        test: /\.(?:woff|woff2|ttf|otf)$/,
-        loader: "url-loader",
-        options: {
-          limit: 8192,
-          fallback: "file-loader",
-          name: "assets/[name].[contenthash:8].[ext]",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024,
+          },
         },
       },
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new DefinePlugin(envs),
+    new EnvironmentPlugin(
+      Object.keys(process.env).filter(
+        (name) => name === "NODE_ENV" || name.startsWith("PREACT_APP_"),
+      ),
+    ),
     new HtmlWebpackPlugin({
-      inject: "body",
+      inject: "head",
       minify: isProduction,
       template: path.join(__dirname, "src", "index.html"),
       scriptLoading: "defer",
     }),
-    new CopyWebpackPlugin({
+    (new CopyWebpackPlugin({
       patterns: [
         {
           from: path.join(__dirname, "public"),
-          noErrorOnMissing: true,
         },
       ],
-    }),
+    }) as unknown) as WebpackPluginInstance,
   ],
-  devtool: isDevelopment ? "inline-source-map" : false,
+  stats: true,
+  devtool: isDevelopment ? "eval-source-map" : "nosources-source-map",
+  cache: {
+    type: "filesystem",
+  },
   devServer: {
     historyApiFallback: true,
   },
+  optimization: {},
+  node: false,
+  externals: [],
+  externalsPresets: {},
+  experiments: {},
+  infrastructureLogging: {},
+  resolveLoader: {},
+  snapshot: {},
+  watchOptions: {},
 };
 
 export default config;
