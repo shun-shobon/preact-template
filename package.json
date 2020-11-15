@@ -9,6 +9,7 @@
   "repository": "https://github.com/shun-shobon/preact-template.git",
   "scripts": {
     "build": "webpack",
+    "clean": "rimraf dist",
     "dev": "webpack-dev-server",
     "lint": "run-p eslint stylelint",
     "eslint": "eslint --ignore-path .gitignore 'src/**/*.{tsx,ts}'",
@@ -60,6 +61,7 @@
     "postcss": "^8.1.7",
     "postcss-loader": "^4.0.4",
     "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",

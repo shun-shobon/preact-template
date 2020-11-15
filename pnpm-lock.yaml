@@ -32,6 +32,7 @@ devDependencies:
   postcss: 8.1.7
   postcss-loader: 4.0.4_postcss@8.1.7+webpack@5.4.0
   prettier: 2.1.2
+  rimraf: 3.0.2
   sass: 1.29.0
   sass-loader: 10.1.0_bc1ad8ea5ff4ccf1ca8ed14d84428381
   style-loader: 2.0.0_webpack@5.4.0
@@ -8502,6 +8503,7 @@ specifiers:
   preact: ^10.5.7
   prettier: ^2.1.2
   regenerator-runtime: ^0.13.7
+  rimraf: ^3.0.2
   sass: ^1.29.0
   sass-loader: ^10.1.0
   style-loader: ^2.0.0
