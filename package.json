@@ -8,8 +8,8 @@
   "author": "SHUN/しゅん <shun.shobon@gmail.com> (https://github.com/shun-shobon)",
   "repository": "https://github.com/shun-shobon/preact-template.git",
   "scripts": {
-    "build": "cross-env TS_NODE_PROJECT='tsconfig.webpack.json' webpack",
-    "dev": "cross-env TS_NODE_PROJECT='tsconfig.webpack.json' webpack-dev-server",
+    "build": "webpack",
+    "dev": "webpack-dev-server",
     "eslint": "eslint --ignore-path .gitignore 'src/**/*.{tsx,ts}'",
     "eslint:fix": "eslint --ignore-path .gitignore 'src/**/*.{tsx,ts}' --fix",
     "stylelint": "stylelint --ignore-path .gitignore 'src/**/*.{scss,css}'",
